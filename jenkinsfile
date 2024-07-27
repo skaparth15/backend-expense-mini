@@ -1,0 +1,17 @@
+pipeline {
+    agent{
+        label "agent"
+    }
+
+    stages{
+        stage("installing dependinces"){
+            steps{
+                sh """
+                  npm install
+                  ls -ltr
+                """
+            }
+
+        }
+    }
+}
