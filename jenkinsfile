@@ -21,8 +21,8 @@ stages{
 
     }
 
-    stage("uploading the package to nexus")
-    steps{
+    stage("uploading the package to nexus"){
+        steps{
         
             nexusArtifactUploader(
                 nexusVersion: 'nexus3',
@@ -38,6 +38,8 @@ stages{
                         type: 'zip']
                 ]
                 )
-}
+            }
     }
+}
+
 }
