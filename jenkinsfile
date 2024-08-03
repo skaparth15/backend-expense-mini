@@ -1,17 +1,43 @@
 pipeline {
-    agent{
-        label "agent"
+agent{
+    label "agent"
+}
+
+stages{
+    stage("installing dependinces"){
+        steps{
+            sh """
+                npm install
+                ls -ltr
+            """
+        }
+
+        steps{
+            sh """
+                zip -r backend.zip . -x jenkinsfile
+
+            """
+        }
+
     }
 
-    stages{
-        stage("installing dependinces"){
-            steps{
-                sh """
-                  npm install
-                  ls -ltr
-                """
-            }
-
-        }
+    stage("uploading the package to nexus")
+    steps{
+        
+            nexusArtifactUploader(
+                nexusVersion: 'nexus3',
+                protocol: 'http',
+                nexusUrl: '52.91.138.230:8081',
+                groupId: 'com.expense',
+                credentialsId: "nexus3",
+                repository: 'backend-expense',
+                artifacts: [
+                    [artifactId: 'backend',
+                        classifier: '',
+                        file: 'backend',
+                        type: 'zip']
+                ]
+                )
+}
     }
 }
