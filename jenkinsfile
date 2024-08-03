@@ -11,13 +11,14 @@ stages{
                 ls -ltr
             """
         }
-
+    }
+      stage("packaging the compiled code"){
         steps{
             sh """
                 zip -r backend.zip . -x jenkinsfile
 
             """
-        }
+            }
 
     }
 
