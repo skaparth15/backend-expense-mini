@@ -30,7 +30,7 @@ stages{
                 protocol: 'http',
                 nexusUrl: '52.91.138.230:8081',
                 groupId: 'com.expense',
-                credentialsId: "nexus3",
+                credentialsId: "nexus-cred",
                 repository: 'backend-expense',
                 artifacts: [
                     [artifactId: 'backend',
