@@ -29,7 +29,7 @@ stages{
                 protocol: 'http',
                 nexusUrl: '3.92.139.59:8081',
                 groupId: 'com.expense',
-                version('1.0')
+                version: '1.0',
                 credentialsId: "nexus-cred",
                 repository: 'backend-expense',
                 artifacts: [
