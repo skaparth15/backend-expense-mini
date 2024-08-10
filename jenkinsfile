@@ -15,7 +15,7 @@ stages{
       stage("packaging the compiled code"){
         steps{
             sh """
-                zip -r backend.zip . -x jenkinsfile
+                zip -r backend.zip . -x jenkinsfile -x .git -x backend.*
 
             """
             }
