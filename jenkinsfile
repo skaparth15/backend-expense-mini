@@ -24,11 +24,10 @@ stages{
 
     stage("uploading the package to nexus"){
         steps{
-        
             nexusArtifactUploader(
                 nexusVersion: 'nexus3',
                 protocol: 'http',
-                nexusUrl: '52.91.138.230:8081',
+                nexusUrl: '3.92.139.59:8081',
                 groupId: 'com.expense',
                 credentialsId: "nexus-cred",
                 repository: 'backend-expense',
