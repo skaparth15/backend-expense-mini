@@ -3,6 +3,10 @@ agent{
     label "agent"
 }
 
+environment {
+        NEXUS_URL = 'expense-mini-nexus.ilovedevops.fun:8081' // Replace with your Nexus URL and repository name
+        NEXUS_CREDENTIALS_ID = 'nexus-cred' // Use the ID of the credentials you added
+}
 stages{
     stage("installing dependinces"){
         steps{
@@ -23,21 +27,25 @@ stages{
     }
 
     stage("uploading the package to nexus"){
-        steps{
-            nexusArtifactUploader(
-                nexusVersion: 'nexus3',
-                protocol: 'http',
-                nexusUrl: 'expense-mini-nexus.ilovedevops.fun:8081',
-                groupId: 'com.expense',
-                credentialsId: "nexus-cred",
-                repository: 'backend-expense',
-                artifacts: [
-                    [artifactId: 'backend',
-                        classifier: '',
-                        file: 'backend.zip',
-                        type: 'zip']
-                ]
-                )
+        steps {
+                script {
+                    nexusArtifactUploader(
+                        artifacts: [[
+                            artifactId: 'backend', // Replace with your artifact ID
+                            classifier: '',
+                            file: "backend.zip",
+                            type: 'zip'
+                        ]],
+                        credentialsId: "${env.NEXUS_CREDENTIALS_ID}",
+                        groupId: 'com.expense', // Replace with your group ID
+                        nexusUrl: "${env.NEXUS_URL}",
+                        protocol: 'http',
+                        repository: 'backend-expense', // Replace with your repository name
+                        //version: "${env.VERSION}"
+                        nexusVersion: "nexus3"
+                    )
+ 
+                }
             }
     }
 }
