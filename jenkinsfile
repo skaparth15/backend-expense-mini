@@ -27,7 +27,7 @@ stages{
             nexusArtifactUploader(
                 nexusVersion: 'nexus3',
                 protocol: 'http',
-                nexusUrl: 'nexus-server.ilovedevops.fun:8081',
+                nexusUrl: 'expense-mini-nexus.ilovedevops.fun:8081',
                 groupId: 'com.expense',
                 version: '1.0',
                 credentialsId: "nexus-cred",
