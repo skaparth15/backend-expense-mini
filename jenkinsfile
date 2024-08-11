@@ -15,7 +15,7 @@ stages{
       stage("packaging the compiled code"){
         steps{
             sh """
-                zip -r backend.zip . -x jenkinsfile -x .git -x backend.*
+                zip -r backend.zip * -x jenkinsfile
 
             """
             }
@@ -27,7 +27,7 @@ stages{
             nexusArtifactUploader(
                 nexusVersion: 'nexus3',
                 protocol: 'http',
-                nexusUrl: '3.92.139.59:8081',
+                nexusUrl: 'nexus-server.ilovedevops.fun:8081',
                 groupId: 'com.expense',
                 version: '1.0',
                 credentialsId: "nexus-cred",
