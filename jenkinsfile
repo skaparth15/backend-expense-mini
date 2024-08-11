@@ -29,7 +29,6 @@ stages{
                 protocol: 'http',
                 nexusUrl: 'expense-mini-nexus.ilovedevops.fun:8081',
                 groupId: 'com.expense',
-                version: '1.0',
                 credentialsId: "nexus-cred",
                 repository: 'backend-expense',
                 artifacts: [
